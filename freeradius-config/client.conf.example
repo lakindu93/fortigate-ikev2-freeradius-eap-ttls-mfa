@@ -1,12 +1,43 @@
+# clients.conf.example
+#
+# Copy to clients.conf (untracked, see .gitignore) and fill in real values.
+# Never commit the real file — it contains shared secrets that protect the
+# RADIUS channel between this server and every NAS (FortiGate) that uses it.
+
+# Default localhost client, used for local testing (radtest / eapol_test).
+# "testing123" is FreeRADIUS's well-known default secret for this entry —
+# fine for a loopback-only test client, but still worth rotating if this
+# host is ever reachable by anything other than localhost.
+client localhost {
+	ipaddr = 127.0.0.1
+	proto = *
+	secret = testing123
+	nas_type = other
+	limit {
+		max_connections = 16
+		lifetime = 0
+		idle_timeout = 30
+	}
+}
+
+client localhost_ipv6 {
+	ipv6addr = ::1
+	secret   = testing123
+}
+
+# The FortiGate acting as the IKEv2 IPsec dial-up VPN's NAS/RADIUS client.
 client fortigate_vpn {
-    ipaddr  = <FORTIGATE_RADIUS_SOURCE_IP>
-    secret  = <RADIUS_SHARED_SECRET>
-    shortname = fortigate-vpn
-    nas_type = other
-    # Confirmed via radius.log that this FortiGate already sends
-    # Message-Authenticator on every packet (BlastRADIUS / CVE-2024-3596
-    # mitigation) - making it explicit and required, rather than relying on
-    # FreeRADIUS's runtime auto-detection (which doesn't persist across
-    # restarts and re-logs the same notice every time).
-    require_message_authenticator = true
+	# Real RADIUS-facing interface IP of the FortiGate.
+	ipaddr    = <FORTIGATE_RADIUS_SOURCE_IP>
+	# Freshly generated 32+ char random secret, shared out-of-band with the
+	# FortiGate's RADIUS server object config. Never reuse "testing123".
+	#   e.g. dd if=/dev/random bs=1 count=24 | base64
+	secret    = <SHARED_SECRET_32_PLUS_RANDOM_CHARS>
+	shortname = fortigate-ipsec-vpn
+	nas_type  = other
+	# This FortiGate sends Message-Authenticator on every packet
+	# (BlastRADIUS / CVE-2024-3596 mitigation). Setting this explicitly
+	# avoids relying on FreeRADIUS's runtime auto-detection, which does
+	# not persist across restarts.
+	require_message_authenticator = true
 }
