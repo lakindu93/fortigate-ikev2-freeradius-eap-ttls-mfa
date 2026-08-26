@@ -1,4 +1,4 @@
-# fortigate-eap-ttls-asgardeo-mfa
+# fortigate-ikev2-freeradius-eap-ttls-mfa
 
 FreeRADIUS 3.2 configuration for a FortiGate IKEv2 IPsec dial-up VPN using
 EAP-TTLS, with:
