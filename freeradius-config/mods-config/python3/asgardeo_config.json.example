@@ -1,0 +1,10 @@
+{
+  "token_endpoint": "https://api.asgardeo.io/t/<YOUR_TENANT>/oauth2/token",
+  "ropc_client_id": "<ROPC_APP_CLIENT_ID>",
+  "ropc_client_secret": "<ROPC_APP_CLIENT_SECRET>",
+  "ropc_scope": "openid groups",
+  "groups_claim": "groups",
+  "http_timeout_seconds": 3,
+  "http_retries": 1,
+  "userinfo_endpoint": "https://api.asgardeo.io/t/<YOUR_TENANT>/oauth2/userinfo"
+}
