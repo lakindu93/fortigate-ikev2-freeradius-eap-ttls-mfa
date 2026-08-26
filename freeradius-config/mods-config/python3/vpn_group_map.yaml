@@ -1,0 +1,6 @@
+# Left-hand side must exactly match:
+#   - the Asgardeo group's display name, for cloud-path users, OR
+# Right-hand side must exactly match the "group-name" configured in the FortiGate's `config user group`
+
+network-admins: admin-users
+all-non-admins: non-admin-users
