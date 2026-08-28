@@ -1,5 +1,12 @@
 # FortiGate IKEv2 IPsec VPN with FreeRADIUS EAP-TTLS and MFA
 
+![FortiGate](https://img.shields.io/badge/FortiGate-IPsec%20VPN-red)
+![FreeRADIUS](https://img.shields.io/badge/FreeRADIUS-EAP--TTLS-blue)
+![IKEv2](https://img.shields.io/badge/IKEv2-IPsec-orange)
+![MFA](https://img.shields.io/badge/MFA-TOTP-green)
+![Asgardeo](https://img.shields.io/badge/Asgardeo-Identity%20Platform-purple)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A reference implementation for integrating a **FortiGate IKEv2 IPsec dial-up VPN** with **FreeRADIUS EAP-TTLS/PAP**, **WSO2 Identity Platform (Asgardeo)**, and **Google Authenticator-compatible TOTP MFA**.
 
 This project provides the FreeRADIUS configuration, Python-based authentication policy engine, TOTP validation, group mapping, and helper scripts required to build a layered VPN authentication solution.
